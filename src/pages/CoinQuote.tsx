@@ -1,7 +1,23 @@
-import React, { FunctionComponent } from 'react'
+import React, { FunctionComponent, useEffect, useState } from 'react'
 import styles from '@styles/coinQuote.module.scss'
 import CoinList from '@components/coin/CoinList'
+import { useQuery } from 'react-query'
+import { getCoinPrice } from '@api/coinPrice'
 const CoinQuote: FunctionComponent = (): JSX.Element => {
+  const [btc, setBtc] = useState(0)
+  const [eth, setEth] = useState(0)
+  const { data: bitcoin } = useQuery<any, Error>(['getPrice', 'bitcoin'], async coinName => await getCoinPrice(coinName), {
+    suspense: false,
+    enabled: true,
+  })
+  const { data: ethereum } = useQuery<any, Error>(['getPrice', 'ethereum'], async coinName => await getCoinPrice(coinName), {
+    suspense: false,
+    enabled: true,
+  })
+  useEffect(() => {
+    bitcoin ? setBtc(bitcoin.bitcoin.krw) : null
+    ethereum ? setEth(ethereum.ethereum.krw) : null
+  }, [bitcoin, ethereum])
   return (
     <section className={styles.contents}>
       <div className={styles.subContainer}>
@@ -12,10 +28,10 @@ const CoinQuote: FunctionComponent = (): JSX.Element => {
             <CoinList name="인스타코인" eName="INC" price={1780} />
           </li>
           <li>
-            <CoinList name="이더리움" eName="ETH" price={1780} />
+            <CoinList name="이더리움" eName="ETH" price={eth} />
           </li>
           <li>
-            <CoinList name="비트코인" eName="BTC" price={1780} />
+            <CoinList name="비트코인" eName="BTC" price={btc} />
           </li>
         </ul>
       </div>
