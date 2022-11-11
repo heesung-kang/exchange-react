@@ -13,7 +13,7 @@ function App() {
       <Top />
       <Routes location={location}>
         <Route path="/" element={<CoinQuote />}></Route>
-        <Route path="/buy" element={<BuyCoin />} />
+        <Route path="/buy/:name/:abbr" element={<BuyCoin />} />
         <Route path="/a" element={<Buy />} />
         <Route path="/*" element={<NotFound />} />
       </Routes>
