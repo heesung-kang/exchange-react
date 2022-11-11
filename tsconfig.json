@@ -28,7 +28,9 @@
       "@styles/*": ["src/styles/*"],
       "@pages/*": ["src/pages/*"],
       "@hooks/*": ["src/hooks/*"],
-      "@utils/*": ["src/utils/*"]
+      "@utils/*": ["src/utils/*"],
+      "@api/*": ["src/api/*"],
+      "@@types/*": ["src/types/*"]
     }
   },
   "include": ["src", "src/**/*.ts"]

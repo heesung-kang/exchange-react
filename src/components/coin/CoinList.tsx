@@ -4,22 +4,22 @@ import { useNavigate } from 'react-router-dom'
 
 type props = {
   name: string
-  eName: string
+  abbr: string
   price: number
 }
-const CoinList: FunctionComponent<props> = ({ name, eName, price }): JSX.Element => {
+const CoinList: FunctionComponent<props> = ({ name, abbr, price }): JSX.Element => {
   const navigate = useNavigate()
   return (
     <section
       onClick={() => {
-        navigate('/buy')
+        navigate(`/buy/${name}/${abbr}`)
       }}
     >
       <div className={styles.infoWrap}>
         <div className={styles.coinImg}></div>
         <div className={styles.coinInfo}>
           <h3>{name}</h3>
-          <div className={styles.name}>{eName}</div>
+          <div className={styles.name}>{abbr}</div>
         </div>
       </div>
       <div className={styles.price}>
