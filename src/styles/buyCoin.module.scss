@@ -1,0 +1,167 @@
+
+.back {
+  @include NotoSans(2, 500, #000);
+  .wrap {
+    cursor: pointer;
+    img {
+      vertical-align: 0px;
+    }
+    .menu {
+      margin-left: 17px;
+    }
+    a{
+      color:#000;
+    }
+  }
+}
+.title {
+  margin-top: 30px;
+  @include NotoSans(1.6, 500, #000);
+}
+.quote {
+  position: relative;
+  margin-top: 46px;
+  .commission {
+    @include NotoSans(1.6, 500, #888888);
+    text-align: right;
+    margin-top: 10px;
+  }
+  .exchangeWrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 75%;
+    margin: 0 auto;
+    position: relative;
+    .krw {
+      width: 100%;
+      @include NotoSans(2.4, 500, #000);
+      display: flex;
+      justify-content: space-between;
+      .unit {
+        @include NotoSans(2.4, 500, #4bc1c2);
+        width: 50px;
+      }
+      .money {
+        padding-bottom: 5px;
+        border-bottom: 1px solid #888888;
+        background: url("/images/arrow_down.svg") no-repeat right 10px top 15px;
+        .number {
+          text-align: right;
+          @include NotoSans(2.4, 500, #000);
+          width: calc(100% - 10px);
+        }
+      }
+    }
+    .coin {
+      width: 100%;
+      @include NotoSans(2.4, 500, #000);
+      display: flex;
+      justify-content: space-between;
+      .unit {
+        width: 50px;
+      }
+    }
+    .money {
+      width: calc(100% - 65px);
+      text-align: right;
+      padding-right: 40px;
+      min-height: 36px;
+    }
+  }
+}
+.btnBuy {
+  width: 100%;
+  height: 46px;
+  @include NotoSans(1.8, 500, #fff);
+  background-color: #4bc1c2;
+  &:disabled {
+    background-color: #dddddd !important;
+    color: #fff !important;
+  }
+}
+input[type="number"] {
+  text-align: right;
+}
+.ckWrap {
+  position: relative;
+  @include NotoSans(1.4, 500, #000);
+  span {
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  input[id="ck"] {
+    display: none;
+  }
+  input[id="ck"] + label {
+    padding-left: 30px;
+    &:before {
+      content: "";
+      width: 24px;
+      height: 24px;
+      background: url("/images/check.svg");
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+  }
+  input[id="ck"]:checked + label {
+    padding-left: 30px;
+    cursor: pointer;
+    &:before {
+      content: "";
+      width: 24px;
+      height: 24px;
+      background: url("/images/checked.svg");
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+  }
+}
+.terms{
+  position: fixed;
+  top:100vh;
+  left:0;
+  z-index:1;
+  transition:top 0.3s ease-in-out;
+  &.active{
+    top:0;
+  }
+  .termsHeader {
+    background-color: #fff;
+    height: 60px;
+    box-shadow: 0px 9px 5px -4px rgba(0,0,0,0.1);
+    display: flex;
+    justify-content: space-between;
+    padding: 0 23px 0 20px;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+    h2 {
+      @include NotoSans(2, 500, #000);
+    }
+    .close {
+      cursor: pointer;
+    }
+  }
+  .termsBody {
+    width:100vw;
+    height: calc(100vh - 60px);
+    background-color: #fff;
+    padding: 25px 20px;
+    .termsBodyWrap {
+      width: 100%;
+      max-width: 440px;
+      margin: 0 auto;
+      h3 {
+        @include NotoSans(2, 500, #000);
+      }
+      .term {
+        margin-top: 16px;
+        @include NotoSans(1.4, 500, #000);
+      }
+    }
+  }
+
+}

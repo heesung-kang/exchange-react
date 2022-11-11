@@ -1,0 +1,105 @@
+.contents{
+  margin:0 auto;
+  width:100%;
+  background-color:#fff;
+  height:calc(100vh - 70px);
+  max-width:440px;
+}
+.subContainer{
+  padding:20px;
+}
+
+/*form*/
+.disabled{
+  &:disabled{
+    background-color: #f4f4f4 !important;
+    border: 1px solid #ccc !important;
+    color: #aaaaaa !important;
+  }
+}
+input.basic{
+  &:read-only{
+    background-color:#f4f4f4 !important;
+    color:#666 !important;
+  }
+}
+input[type="text"]{
+  &.basic {
+    border: 1px solid #000;
+    height: 30px;
+    padding: 0 10px;
+    width: 100%;
+    font-size:1.4rem;
+    background-color:#fff;
+  }
+  @extend .disabled;
+
+}
+input[type="number"]{
+  &.basic {
+    border: 1px solid #000;
+    height: 30px;
+    padding: 0 10px;
+    width: 100%;
+    @include NotoSans(1.4, 500, #000);
+    background-color:#fff;
+  }
+  @extend .disabled;
+}
+/*button*/
+.button{
+  height: 30px;
+  display: flex;
+  white-space: nowrap;
+  justify-content: center;
+  align-items: center;
+  @include NotoSans(1.6,500,#000);
+  padding:0 22px;
+}
+textarea{
+  border:1px solid #000;
+  width:100%;
+  padding:10px;
+}
+button{
+  border:0;
+  &.basic{
+    @extend .button;
+    border:1px solid #000;
+    background-color:#fff;
+  }
+  &.inTable{
+    @extend .button;
+    border:1px solid #000;
+    background-color:#fff;
+    padding:0 10px;
+  }
+  &.primary{
+    @extend .button;
+    background-color:#000 !important;
+    @include NotoSans(1.6,700,#fff);
+  }
+  &:disabled{
+    background-color: #f4f4f4 !important;
+    color: #aaaaaa !important;
+    font-weight: 400 !important;
+  }
+}
+/*table*/
+table{
+  &.basic{
+    tr{
+      th{
+        @include NotoSans(1.6,500,#000);
+        padding:10px 0;
+        border-bottom:1px solid #000;
+      }
+      td{
+        @include NotoSans(1.6,500,#000);
+        padding:9px 0;
+        text-align:center;
+      }
+    }
+  }
+}
+
