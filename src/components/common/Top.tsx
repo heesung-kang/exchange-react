@@ -1,32 +1,28 @@
-import type { FunctionComponent } from "react";
-import React, { useState } from "react";
-import styles from "@styles/common/header.module.scss";
+import type { FunctionComponent } from 'react'
+import React, { useState } from 'react'
+import styles from '@styles/common/header.module.scss'
 const Top: FunctionComponent = (): JSX.Element => {
-  const [state, setState] = useState(false);
+  const [state, setState] = useState(false)
   const showMenu = () => {
-    setState(true);
-  };
+    setState(true)
+  }
   const hideMenu = () => {
-    setState(false);
-  };
+    setState(false)
+  }
   return (
     <section className={styles.header}>
       <div className={styles.headerWrap}>
         <div className={styles.logo}>
-          <img src="/images/logo.svg" alt="instapay" />
+          <img src={`${import.meta.env.BASE_URL}images/logo.svg`} alt="instapay" />
         </div>
         <div className={styles.hamburgMenu} onClick={showMenu}>
           <span></span>
           <span></span>
           <span></span>
         </div>
-        <nav
-          className={
-            state ? `${styles.active} ${styles.linked}` : `${styles.linked}`
-          }
-        >
+        <nav className={state ? `${styles.active} ${styles.linked}` : `${styles.linked}`}>
           <div className={styles.close} onClick={hideMenu}>
-            <img src="/images/close.svg" alt="" />
+            <img src={`${import.meta.env.BASE_URL}images/close.svg`} alt="" />
           </div>
           <div className={styles.books}>
             <a href="#">BOOKS</a>
@@ -43,13 +39,10 @@ const Top: FunctionComponent = (): JSX.Element => {
             </h3>
           </div>
         </nav>
-        <div
-          className={state ? `${styles.active} ${styles.dim}` : `${styles.dim}`}
-          onClick={hideMenu}
-        ></div>
+        <div className={state ? `${styles.active} ${styles.dim}` : `${styles.dim}`} onClick={hideMenu}></div>
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default Top;
+export default Top

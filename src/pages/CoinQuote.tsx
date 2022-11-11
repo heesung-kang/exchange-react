@@ -1,7 +1,6 @@
-import React, { FunctionComponent } from "react";
-import styles from "@styles/coinQuote.module.scss";
-import CoinList from "@components/coin/CoinList";
-
+import React, { FunctionComponent } from 'react'
+import styles from '@styles/coinQuote.module.scss'
+import CoinList from '@components/coin/CoinList'
 const CoinQuote: FunctionComponent = (): JSX.Element => {
   return (
     <section className={styles.contents}>
@@ -21,7 +20,7 @@ const CoinQuote: FunctionComponent = (): JSX.Element => {
         </ul>
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default CoinQuote;
+export default CoinQuote

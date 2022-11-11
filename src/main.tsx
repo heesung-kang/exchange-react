@@ -1,14 +1,15 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import App from "./App";
-import { BrowserRouter } from "react-router-dom";
-import ScrollToTop from "@components/common/ScrollTop";
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import App from './App'
+import { BrowserRouter, HashRouter } from 'react-router-dom'
 
-ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
-  <BrowserRouter>
-    <ScrollToTop />
+import ScrollToTop from '@components/common/ScrollTop'
+
+ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
+  <HashRouter basename="/">
     <React.StrictMode>
+      <ScrollToTop />
       <App />
     </React.StrictMode>
-  </BrowserRouter>
-);
+  </HashRouter>,
+)
