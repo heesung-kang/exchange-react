@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useEffect, useState } from 'react'
+import React, { FunctionComponent, useEffect, useState, useRef } from 'react'
 import styles from '@styles/buyCoin.module.scss'
 import useInput from '@hooks/useInput'
 import { comma, commaEssence } from '@utils/comma'
@@ -18,7 +18,8 @@ const Buy: FunctionComponent = (): JSX.Element => {
     setCalcVisible(!calcVisible)
   }
   /*인풋 설정*/
-  const krwChange = useInput({ initialState: '' })
+  const maxLen = (value: string) => value.length <= 10
+  const krwChange = useInput({ initialState: '', reset: false, validator: maxLen })
   useEffect(() => {
     const localString = comma(krwChange.value) //천단위 콤마
     let trans = 0
