@@ -1,24 +1,10 @@
-import React, { FunctionComponent, useEffect, useState } from 'react'
+import React, { FunctionComponent } from 'react'
 import styles from '@styles/coinQuote.module.scss'
 import CoinList from '@components/coin/CoinList'
-import { useQuery } from 'react-query'
-import { getCoinPrice } from '@api/coinPrice'
-import { BtcType, EthType } from '@@types/coin'
+import useCoinPrice from '@hooks/useCoin'
 const CoinQuote: FunctionComponent = (): JSX.Element => {
-  const [btc, setBtc] = useState(0)
-  const [eth, setEth] = useState(0)
-  const { data: bitcoin } = useQuery<BtcType, Error>(['getPrice', 'bitcoin'], async coinName => await getCoinPrice(coinName), {
-    suspense: false,
-    enabled: true,
-  })
-  const { data: ethereum } = useQuery<EthType, Error>(['getPrice', 'ethereum'], async coinName => await getCoinPrice(coinName), {
-    suspense: false,
-    enabled: true,
-  })
-  useEffect(() => {
-    bitcoin ? setBtc(bitcoin.bitcoin.krw) : null
-    ethereum ? setEth(ethereum.ethereum.krw) : null
-  }, [bitcoin, ethereum])
+  //코인시세 API
+  const { btc, eth } = useCoinPrice()
   return (
     <section className={styles.contents}>
       <div className={styles.subContainer}>

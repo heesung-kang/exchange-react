@@ -3,7 +3,13 @@ import styles from '@styles/buyCoin.module.scss'
 import useInput from '@hooks/useInput'
 import { comma, commaEssence } from '@utils/comma'
 import { useParams } from 'react-router-dom'
+import useCoinPrice from '@hooks/useCoin'
+import { floor } from '@utils/floor'
+
 const Buy: FunctionComponent = (): JSX.Element => {
+  //코인시세 API
+  const { btc, eth } = useCoinPrice()
+  //get params
   const params = useParams()
   const [krw, setKrw] = useState<string | number>(0)
   const [exchange, setExchange] = useState<string | number>(0)
@@ -15,11 +21,22 @@ const Buy: FunctionComponent = (): JSX.Element => {
   const krwChange = useInput({ initialState: '' })
   useEffect(() => {
     const localString = comma(krwChange.value) //천단위 콤마
-    const trans = krwChange.value * 1.2 // 환전
+    let trans = 0
+    if (params.abbr === 'ETH') {
+      const ext = Number(floor(krwChange.value / eth)) // 환전
+      trans = Number((ext * 0.999).toFixed(10))
+    } else if (params.abbr === 'BTC') {
+      const ext = Number(floor(krwChange.value / btc)) // 환전
+      trans = Number((ext * 0.999).toFixed(10))
+    } else if (params.abbr === 'INC') {
+      const ext = Number(floor(krwChange.value / 1780)) // 환전
+      trans = Number((ext * 0.999).toFixed(10))
+    }
     const localStringEx = commaEssence(trans) //천단위 콤마 : 정수
     setKrw(localString)
     setExchange(localStringEx)
   }, [krwChange])
+
   return (
     <>
       <h1 className={styles.title}>{params.name}</h1>
