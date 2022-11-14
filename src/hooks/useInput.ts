@@ -1,30 +1,24 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback } from 'react'
 
-const useInput = ({
-  initialState,
-  reset,
-}: {
-  initialState: any;
-  reset?: boolean;
-}) => {
-  const state = initialState === null ? "" : initialState;
-  const [value, setValue] = useState(state);
+const useInput = ({ initialState, reset }: { initialState: any; reset?: boolean }) => {
+  const state = initialState === null ? '' : initialState
+  const [value, setValue] = useState(state)
   const onChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
       const {
         target: { value },
-      } = e;
-      setValue(value.replace(/(^0+)/, "")); //첫째자리 0 제거
+      } = e
+      setValue(value.replace(/(^0+)/, '')) //첫째자리 0 제거
     },
-    [value]
-  );
+    [value],
+  )
   useEffect(() => {
-    setValue(state);
-  }, [state]);
+    setValue(state)
+  }, [state])
   useEffect(() => {
-    setValue(state);
-  }, [reset]);
-  return { value, onChange };
-};
+    setValue(state)
+  }, [reset])
+  return { value, onChange }
+}
 
-export default useInput;
+export default useInput
