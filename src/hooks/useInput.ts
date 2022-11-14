@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react'
 
-const useInput = ({ initialState, reset }: { initialState: any; reset?: boolean }) => {
+const useInput = ({ initialState, reset, validator }: { initialState: any; reset?: boolean; validator?: any }) => {
   const state = initialState === null ? '' : initialState
   const [value, setValue] = useState(state)
   const onChange = useCallback(
@@ -8,7 +8,13 @@ const useInput = ({ initialState, reset }: { initialState: any; reset?: boolean 
       const {
         target: { value },
       } = e
-      setValue(value.replace(/(^0+)/, '')) //첫째자리 0 제거
+      let willUpdate = true
+      if (typeof validator === 'function') {
+        willUpdate = validator(value)
+      }
+      if (willUpdate) {
+        setValue(value.replace(/(^0+)/, '')) //첫째자리 0 제거
+      }
     },
     [value],
   )
