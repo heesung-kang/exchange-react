@@ -1,6 +1,7 @@
-const axios = require('axios')
-const fetchData = (coin, unit) => {
-  return axios.get(`https://api.coingecko.com/api/v3/simple/price?ids=${coin}&vs_currencies=${unit}`).then(res => {
+import type { AxiosResponse } from 'axios'
+import axios from 'axios'
+const fetchData = (coin: string, unit: string) => {
+  return axios.get(`https://api.coingecko.com/api/v3/simple/price?ids=${coin}&vs_currencies=${unit}`).then((res: AxiosResponse) => {
     return res.data
   })
 }

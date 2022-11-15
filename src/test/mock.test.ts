@@ -1,10 +1,10 @@
-const axios = require('axios')
+import axios from 'axios'
 const find = () => axios.get(`https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=krw`).then(response => response.data)
 
 jest.mock('axios')
 
 test('이더리움 시세 목데이터 테스트', async () => {
-  axios.get.mockResolvedValue({
+  ;(axios.get as jest.Mock).mockResolvedValue({
     data: {
       ethereum: {
         krw: 1649095,
