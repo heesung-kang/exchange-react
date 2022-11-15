@@ -15,7 +15,7 @@ describe('Async/Await', () => {
   test('이더리움 시세 가져오기', async () => {
     const spyGet = jest.spyOn(axios, 'get')
     await fetchData('ethereum', 'krw')
-    expect(spyGet).toBeCalledTimes(1)
-    expect(spyGet).toBeCalledWith('https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=krw')
+    expect(spyGet).toBeCalledTimes(1) //함수가 몇번 호출되었는지 검증
+    expect(spyGet).toBeCalledWith('https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=krw') //함수가 설정한 인자로 호출 되었는지 검증
   })
 })
