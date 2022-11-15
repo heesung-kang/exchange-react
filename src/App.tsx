@@ -4,7 +4,8 @@ import NotFound from '@components/error/NotFound'
 import CoinQuote from '@pages/CoinQuote'
 import Top from '@components/common/Top'
 import BuyCoin from '@pages/BuyCoin'
-import Buy from '@components/coin/Buy'
+import BuyComplete from '@pages/BuyComplete'
+import Index from '@pages/Index'
 
 function App() {
   const location = useLocation()
@@ -12,9 +13,10 @@ function App() {
     <div>
       <Top />
       <Routes location={location}>
-        <Route path="/" element={<CoinQuote />}></Route>
+        <Route path="/" element={<Index />}></Route>
+        <Route path="/coinQuote" element={<CoinQuote />}></Route>
         <Route path="/buy/:name/:abbr" element={<BuyCoin />} />
-        <Route path="/a" element={<Buy />} />
+        <Route path="/buyComplete" element={<BuyComplete />} />
         <Route path="/*" element={<NotFound />} />
       </Routes>
     </div>

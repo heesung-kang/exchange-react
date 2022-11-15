@@ -1,6 +1,7 @@
 import type { FunctionComponent } from 'react'
 import React, { useState } from 'react'
 import styles from '@styles/common/header.module.scss'
+import { Link } from 'react-router-dom'
 const Top: FunctionComponent = (): JSX.Element => {
   const [state, setState] = useState(false)
   const showMenu = () => {
@@ -13,7 +14,9 @@ const Top: FunctionComponent = (): JSX.Element => {
     <section className={styles.header}>
       <div className={styles.headerWrap}>
         <div className={styles.logo}>
-          <img src={`${import.meta.env.BASE_URL}images/logo.svg`} alt="instapay" />
+          <Link to="/">
+            <img src={`${import.meta.env.BASE_URL}images/logo.svg`} alt="instapay" />
+          </Link>
         </div>
         <div className={styles.hamburgMenu} onClick={showMenu}>
           <span></span>

@@ -12,12 +12,13 @@ const BuyCoin: FunctionComponent = (): JSX.Element => {
         <div className={styles.subContainer}>
           <div className={styles.back}>
             <span className={styles.wrap}>
-              <Link to="/">
+              <Link to="/coinQuote">
                 <img src={`${import.meta.env.BASE_URL}images/back.svg`} alt="뒤로가기" />
                 <span className={styles.menu}>구매</span>
               </Link>
             </span>
           </div>
+          {/* 코인 구매 금액 init */}
           <Buy />
           <div className={`${styles.mt64} ${styles.ml10} ${styles.ckWrap}`}>
             <input type="checkbox" id="ck" />

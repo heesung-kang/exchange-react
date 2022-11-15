@@ -5,6 +5,11 @@ $breakpoint-mobile: 440px;
     @content;
   }
 }
+@mixin pc {
+  @media (min-width: #{$breakpoint-mobile})  {
+    @content;
+  }
+}
 html{
   font-size:62.5%;;
   overflow-y: auto !important;

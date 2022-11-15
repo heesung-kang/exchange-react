@@ -1,0 +1,71 @@
+.wrap{
+  position:relative;
+  height:calc(100vh - 70px);
+  .i1{
+    padding:143px 0;
+    background-color:rgba(60,100,177,0.06);
+    h1{
+      @include NotoSans(4.4,700,#373F41);
+      text-align:center;
+    }
+    .info{
+      margin:30px auto 0;
+      @include NotoSans(1.6,400,#373F41);
+      max-width:730px;
+    }
+    .btnGroup{
+      margin-top:56px;
+      display:flex;
+      justify-content:center;
+      .btnStart{
+        @include NotoSans(1.4,700,#fff);
+        padding:0 18px;
+        background:#4BC1C2;
+        height:42px;
+        line-height:42px;
+      }
+      .btnHowto{
+        @include NotoSans(1.4,700,#4BC1C2);
+        border:1px solid #4BC1C2;
+        height:42px;
+        line-height:42px;
+        padding:0 18px;
+      }
+    }
+  }
+  .m1{
+    h1{
+      @include NotoSans(1.8,500,#000);
+      text-align:center;
+      padding-top:80px;
+    }
+    .btnStart{
+      position:absolute;
+      top:50%;
+      left:37px;
+      width:calc(100% - 74px);
+      text-align:center;
+      @include NotoSans(1.4,700,#fff);
+      padding:0 18px;
+      background:#4BC1C2;
+      height:42px;
+      line-height:42px;
+    }
+  }
+}
+
+
+@include mobile{
+  .wrap{
+    background-color: #fff;
+  }
+  .i1{
+    display:none;
+  }
+}
+@include pc{
+  .mobile{
+    display:none;
+  }
+}
+
