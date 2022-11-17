@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App'
+import { RecoilRoot } from 'recoil'
 import { BrowserRouter, HashRouter } from 'react-router-dom'
 import { QueryClient, QueryClientProvider } from 'react-query'
 import { ReactQueryDevtools } from 'react-query/devtools'
@@ -18,13 +19,15 @@ const queryClient = new QueryClient({
   },
 })
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-  <HashRouter basename="/">
-    <React.StrictMode>
-      <ScrollToTop />
-      <QueryClientProvider client={queryClient}>
-        <App />
-        {import.meta.env.MODE === 'development' && <ReactQueryDevtools initialIsOpen={false} />}
-      </QueryClientProvider>
-    </React.StrictMode>
-  </HashRouter>,
+  <RecoilRoot>
+    <HashRouter basename="/">
+      <React.StrictMode>
+        <ScrollToTop />
+        <QueryClientProvider client={queryClient}>
+          <App />
+          {import.meta.env.MODE === 'development' && <ReactQueryDevtools initialIsOpen={false} />}
+        </QueryClientProvider>
+      </React.StrictMode>
+    </HashRouter>
+  </RecoilRoot>,
 )
