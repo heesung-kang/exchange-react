@@ -16,7 +16,7 @@ function App() {
         <Route path="/" element={<Index />}></Route>
         <Route path="/coinQuote" element={<CoinQuote />}></Route>
         <Route path="/buy/:name/:abbr" element={<BuyCoin />} />
-        <Route path="/buyComplete" element={<BuyComplete />} />
+        <Route path="/buyComplete/:abbr/:krw/:exchange" element={<BuyComplete />} />
         <Route path="/*" element={<NotFound />} />
       </Routes>
     </div>

@@ -5,8 +5,25 @@
   @include NotoSans(1.4, 500, #888888);
   margin-top: 5px;
 }
+.refresh{
+  text-align: right;
+  button{
+    @include NotoSans(1.6,500,#4BC1C2);
+    background-color: #fff;
+  }
+}
+.header{
+  margin-top: 70px;
+  @include NotoSans(1.5,500,#888888);
+  display:flex;
+  justify-content: space-between;
+  span{
+    &:first-child{
+      padding-left:70px;
+    }
+  }
+}
 .quoteWrap {
-  margin-top: 30px;
   li {
     cursor:pointer;
     section{

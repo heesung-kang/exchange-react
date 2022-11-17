@@ -1,15 +1,15 @@
-import type { FunctionComponent } from "react";
-import React from "react";
-import styles from "@styles/common/error.module.scss";
-import Button from "@mui/material/Button";
-import { styled } from "@mui/material/styles";
-import { useNavigate } from "react-router-dom";
+import type { FunctionComponent } from 'react'
+import React from 'react'
+import styles from '@styles/common/error.module.scss'
+import Button from '@mui/material/Button'
+import { styled } from '@mui/material/styles'
+import { useNavigate } from 'react-router-dom'
 const ButtonCustom = styled(Button)({
   fontSize: 15,
-});
+})
 
 const NotFound: FunctionComponent = (): JSX.Element => {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
   return (
     <div className={styles.container404}>
       <div>
@@ -19,7 +19,7 @@ const NotFound: FunctionComponent = (): JSX.Element => {
           <ButtonCustom
             variant="contained"
             onClick={() => {
-              navigate("/");
+              navigate('/')
             }}
           >
             홈으로
@@ -27,7 +27,7 @@ const NotFound: FunctionComponent = (): JSX.Element => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default NotFound;
+export default NotFound

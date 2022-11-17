@@ -9,16 +9,56 @@
 .info{
   @include NotoSans(1.6,500,#000);
   text-align: center;
-  margin-top:30px;
+  margin-top:50px;
 }
 .check{
   position:absolute;
   left:62px;
-  bottom:0;
+  bottom:-10px;
   width:calc(100% - 124px);
   @include NotoSans(1.8,500,#fff);
   height:46px;
   line-height:46px;
   text-align: center;
   background-color:#4BC1C2;
+}
+.krw{
+  text-align:center;
+  margin-top:40px;
+  span{
+    @include NotoSans(2,500,#000);
+    &.unit{
+      color:#888888;
+      margin-left:5px;
+    }
+  }
+}
+.line{
+  border-bottom:1px solid #000;
+  width:50px;
+  margin:30px auto;
+}
+.exchange{
+  text-align:center;
+  span{
+    @include NotoSans(2,500,#000);
+    &.unit{
+      color:#4BC1C2;
+      margin-left:5px;
+    }
+  }
+}
+@include mobile{
+  .title{
+    margin-top:20px;
+  }
+  .krw{
+    margin-top:20px;
+  }
+  .line{
+    margin:15px auto;
+  }
+  .info{
+    margin-top:20px;
+  }
 }
