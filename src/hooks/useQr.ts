@@ -75,6 +75,9 @@ const useQr = () => {
   }
   useEffect(() => {
     if (isMobile()) {
+      if (re === '') {
+        return
+      }
       //모바일 딥링크 띄우기
       location.href = re
       _createWait()

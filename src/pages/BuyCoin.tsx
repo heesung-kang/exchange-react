@@ -5,6 +5,7 @@ import Buy from '@components/coin/Buy'
 import Terms from '@components/common/Terms'
 import { coinPrice, exchangeParentsPrice, termsCheck, buyStatus, qrImg } from '@recoil/coin'
 import { useRecoilState, useSetRecoilState, useRecoilValue } from 'recoil'
+import isMobile from '@utils/isMobile'
 const BuyCoin: FunctionComponent = (): JSX.Element => {
   const priceKrw = useRecoilValue(exchangeParentsPrice)
   const qr = useRecoilValue(qrImg)
@@ -52,7 +53,7 @@ const BuyCoin: FunctionComponent = (): JSX.Element => {
           <button className={`${styles.mt20} ${styles.btnBuy}`} onClick={buy}>
             구매하기
           </button>
-          {qr !== '' ? (
+          {qr !== '' && !isMobile() ? (
             <div className={styles.qrWrap}>
               <h2>인스타페이 앱으로 QR코드를 찍어서 결제해 주세요.</h2>
               <img src={qr} />
