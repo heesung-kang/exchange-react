@@ -3,17 +3,18 @@ import styles from '@styles/buyCoin.module.scss'
 import { Link } from 'react-router-dom'
 import Buy from '@components/coin/Buy'
 import Terms from '@components/common/Terms'
-import { coinPrice, exchangeParentsPrice, termsCheck, buyStatus } from '@recoil/coin'
+import { coinPrice, exchangeParentsPrice, termsCheck, buyStatus, qrImg } from '@recoil/coin'
 import { useRecoilState, useSetRecoilState, useRecoilValue } from 'recoil'
 const BuyCoin: FunctionComponent = (): JSX.Element => {
   const priceKrw = useRecoilValue(exchangeParentsPrice)
+  const qr = useRecoilValue(qrImg)
   const [terms, setTerms] = useState(false)
   const termsVisible = () => setTerms(!terms)
   const setFetch = useSetRecoilState(coinPrice)
   const setBuyStatus = useSetRecoilState(buyStatus)
   //구매하기
   const buy = () => {
-    if (!check) {
+    if (!isChecked) {
       alert('약관에 동의해 주세요')
       return
     }
@@ -25,11 +26,10 @@ const BuyCoin: FunctionComponent = (): JSX.Element => {
     setBuyStatus(true)
   }
   //약관체크
-  const [check, setCheck] = useRecoilState(termsCheck)
-  const checked = () => {
-    setCheck(!check)
+  const [isChecked, setIsChecked] = useRecoilState(termsCheck)
+  const handleChecked = () => {
+    setIsChecked(!isChecked)
   }
-
   return (
     <>
       <section className={styles.contents}>
@@ -45,13 +45,19 @@ const BuyCoin: FunctionComponent = (): JSX.Element => {
           {/* 코인 구매 금액 init */}
           <Buy />
           <div className={`${styles.mt64} ${styles.ml10} ${styles.ckWrap}`}>
-            <input type="checkbox" id="ck" onChange={checked} />
+            <input type="checkbox" id="ck" checked={isChecked} onChange={handleChecked} />
             <label htmlFor="ck"></label>
             <span onClick={termsVisible}>인스타코인 구매약관</span>에 동의합니다
           </div>
           <button className={`${styles.mt20} ${styles.btnBuy}`} onClick={buy}>
             구매하기
           </button>
+          {qr !== '' ? (
+            <div className={styles.qrWrap}>
+              <h2>인스타페이 앱으로 QR코드를 찍어서 결제해 주세요.</h2>
+              <img src={qr} />
+            </div>
+          ) : null}
         </div>
       </section>
       {/* 구매 약관*/}
