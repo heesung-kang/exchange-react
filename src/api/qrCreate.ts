@@ -1,6 +1,6 @@
 import axios from 'axios'
 const baseURL = 'https://api.instapay.kr'
-const storeId = 'l20ka-km19m-04t08-20b08-c32po'
+const storeId = import.meta.env.VITE_STORE_ID
 
 function createQrcodeApi(params: any) {
   return axios.get(`${baseURL}/s2/sell?${params}`, {
