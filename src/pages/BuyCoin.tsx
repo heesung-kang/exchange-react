@@ -3,18 +3,14 @@ import styles from '@styles/buyCoin.module.scss'
 import { Link } from 'react-router-dom'
 import Buy from '@components/coin/Buy'
 import Terms from '@components/common/Terms'
-import { coinPrice, termsCheck, buyStatus, qrImg } from '@recoil/coin'
+import { getCoinPriceStatusAtom, termsCheckAtom, buyStatusAtom, qrImgAtom } from '@recoil/coin'
 import { useRecoilState, useSetRecoilState, useRecoilValue } from 'recoil'
 import isMobile from '@utils/isMobile'
 import useQr from '@hooks/useQr'
 const BuyCoin: FunctionComponent = (): JSX.Element => {
-  const qr = useRecoilValue<string>(qrImg)
-  const [qrcode, setQrcode] = useState('')
-  const [terms, setTerms] = useState(false)
-  const termsVisible = () => setTerms(!terms)
-  const setFetch = useSetRecoilState(coinPrice)
-  const setCoinBuyStatus = useSetRecoilState(buyStatus)
   //구매하기
+  const setFetch = useSetRecoilState(getCoinPriceStatusAtom)
+  const setCoinBuyStatus = useSetRecoilState(buyStatusAtom)
   const handleBuy = () => {
     if (!isChecked) {
       alert('약관에 동의해 주세요')
@@ -24,11 +20,15 @@ const BuyCoin: FunctionComponent = (): JSX.Element => {
     setCoinBuyStatus(true)
   }
   //약관체크
-  const [isChecked, setIsChecked] = useRecoilState(termsCheck)
+  const [terms, setTerms] = useState(false)
+  const termsVisible = () => setTerms(!terms)
+  const [isChecked, setIsChecked] = useRecoilState(termsCheckAtom)
   const handleChecked = () => {
     setIsChecked(!isChecked)
   }
   //qrcode
+  const qr = useRecoilValue<string>(qrImgAtom)
+  const [qrcode, setQrcode] = useState('')
   useEffect(() => {
     setQrcode(qr)
   }, [qr])
@@ -50,7 +50,7 @@ const BuyCoin: FunctionComponent = (): JSX.Element => {
               </Link>
             </span>
           </div>
-          {/*/!* 코인 구매 금액 init *!/*/}
+          {/* 코인 구매 금액 init */}
           <Buy />
           <div className={`${styles.mt64} ${styles.ml10} ${styles.ckWrap}`}>
             <input type="checkbox" id="ck" checked={isChecked} onChange={handleChecked} />

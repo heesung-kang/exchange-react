@@ -3,12 +3,12 @@ import { Link } from 'react-router-dom'
 import styles from '@styles/buyComplete.module.scss'
 import { useParams } from 'react-router-dom'
 import { useSetRecoilState } from 'recoil'
-import { coinPrice } from '@recoil/coin'
+import { getCoinPriceStatusAtom } from '@recoil/coin'
 import { setCookie } from '@utils/cookie'
 
 const BuyComplete: FunctionComponent = (): JSX.Element => {
   const params = useParams()
-  const setIsChecked = useSetRecoilState(coinPrice)
+  const setIsChecked = useSetRecoilState(getCoinPriceStatusAtom)
   useEffect(() => {
     setCookie('pay', 'ok')
     setIsChecked(false)
