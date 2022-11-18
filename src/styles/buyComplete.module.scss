@@ -51,6 +51,13 @@
 .myWallet{
   text-align:center;
   margin-top:30px;
+  span{
+    width:250px;
+    height:269px;
+    overflow:hidden;
+    border-radius:52px 52px 0 0;
+    filter:drop-shadow(0px 0px 8px rgba(0,0,0,0.2));
+  }
 }
 @include mobile{
   .title{
