@@ -2,12 +2,13 @@ import React, { FunctionComponent, useEffect, useState } from 'react'
 import styles from '@styles/buyCoin.module.scss'
 import useInput from '@hooks/useInput'
 import { comma, commaEssence } from '@utils/comma'
+import { isExponential } from '@utils/isExponential'
 import { useNavigate, useParams } from 'react-router-dom'
 import useCoinPrice from '@hooks/useCoin'
 import { floor } from '@utils/floor'
 import useQr from '@hooks/useQr'
 import { useRecoilState, useSetRecoilState } from 'recoil'
-import { exchangeParentsPrice, buyStatus, qrImg } from '@recoil/coin'
+import { buyStatus, qrImg } from '@recoil/coin'
 const Buy: FunctionComponent = (): JSX.Element => {
   const navigate = useNavigate()
   //get params
@@ -21,10 +22,10 @@ const Buy: FunctionComponent = (): JSX.Element => {
   //결제 hooks
   const { paid, qr, _open } = useQr()
   //코인시세 API
-  const { btc, eth } = useCoinPrice()
+  const { btc, eth } = useCoinPrice(false)
   const [btcPrice, setBtcPrice] = useState(0)
   const [ethPrice, setEthPrice] = useState(0)
-  const [exchangePrice, setExchangePrice] = useRecoilState(exchangeParentsPrice) //최종 결제 코인 수
+  const [exchangePrice, setExchangePrice] = useState(0) //최종 결제 코인 수
   const [coinBuyStatus, setCoinBuyStatus] = useRecoilState(buyStatus) // 코인 구매 상태
   //구매버튼 클릭시 시세 받기
   useEffect(() => {
@@ -34,8 +35,10 @@ const Buy: FunctionComponent = (): JSX.Element => {
   //구매버튼 클릭시 API 전송
   useEffect(() => {
     if (coinBuyStatus && exchangePrice !== 0) {
-      _open({ productName: params.abbr, productAmount: 1, ttl: 20 })
-      // _open({ productName: params.abbr, productAmount: krwChange.value, ttl: 20 })
+      _open({ productName: params.abbr, productAmount: krwChange.value, ttl: 20 })
+      setCoinBuyStatus(false)
+    } else if (coinBuyStatus && exchangePrice === 0) {
+      alert('구매 금액을 입력하지 않았거나 구매금액이 너무 적습니다.')
       setCoinBuyStatus(false)
     }
   }, [coinBuyStatus])
@@ -57,13 +60,13 @@ const Buy: FunctionComponent = (): JSX.Element => {
     const localString = comma(krwChange.value) //천단위 콤마
     if (params.abbr === 'ETH') {
       const ext = Number(floor(krwChange.value / ethPrice)) // 환전
-      setExchangePrice(Number((ext * 0.999).toFixed(10)))
+      isExponential(ext) ? setExchangePrice(0) : setExchangePrice(Number((ext * 0.999).toFixed(13)))
     } else if (params.abbr === 'BTC') {
       const ext = Number(floor(krwChange.value / btcPrice)) // 환전
-      setExchangePrice(Number((ext * 0.999).toFixed(10)))
+      isExponential(ext) ? setExchangePrice(0) : setExchangePrice(Number((ext * 0.999).toFixed(13)))
     } else if (params.abbr === 'INC') {
       const ext = Number(floor(krwChange.value / 2000)) // 환전
-      setExchangePrice(Number((ext * 0.999).toFixed(10)))
+      isExponential(ext) ? setExchangePrice(0) : setExchangePrice(Number((ext * 0.999).toFixed(13)))
     }
     const localStringEx = commaEssence(exchangePrice) //천단위 콤마 : 정수
     setKrw(localString)
