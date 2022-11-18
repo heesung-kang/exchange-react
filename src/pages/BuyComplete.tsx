@@ -31,7 +31,9 @@ const BuyComplete: FunctionComponent = (): JSX.Element => {
           <br /> 구매한 코인을 확인하세요!
         </div>
         <div className={styles.myWallet}>
-          <img src={`${import.meta.env.BASE_URL}images/screen.svg`} alt="" />
+          <span>
+            <img src={`${import.meta.env.BASE_URL}images/screen.svg`} alt="" />
+          </span>
         </div>
         <Link to="/" className={styles.check}>
           확인
