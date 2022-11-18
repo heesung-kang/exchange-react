@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useEffect, useState } from 'react'
+import React, { FunctionComponent, useEffect, useState, useMemo } from 'react'
 import styles from '@styles/buyCoin.module.scss'
 import { Link } from 'react-router-dom'
 import Buy from '@components/coin/Buy'
@@ -8,6 +8,14 @@ import { useRecoilState, useSetRecoilState, useRecoilValue } from 'recoil'
 import isMobile from '@utils/isMobile'
 import useQr from '@hooks/useQr'
 const BuyCoin: FunctionComponent = (): JSX.Element => {
+  //약관체크
+  const [terms, setTerms] = useState(false)
+  const handleTermsVisible = () => setTerms(!terms)
+
+  const [isChecked, setIsChecked] = useRecoilState(termsCheckAtom)
+  const handleChecked = () => {
+    setIsChecked(!isChecked)
+  }
   //구매하기
   const setFetch = useSetRecoilState(getCoinPriceStatusAtom)
   const setCoinBuyStatus = useSetRecoilState(buyStatusAtom)
@@ -18,13 +26,6 @@ const BuyCoin: FunctionComponent = (): JSX.Element => {
     }
     setFetch(true)
     setCoinBuyStatus(true)
-  }
-  //약관체크
-  const [terms, setTerms] = useState(false)
-  const termsVisible = () => setTerms(!terms)
-  const [isChecked, setIsChecked] = useRecoilState(termsCheckAtom)
-  const handleChecked = () => {
-    setIsChecked(!isChecked)
   }
   //qrcode
   const qr = useRecoilValue<string>(qrImgAtom)
@@ -55,7 +56,7 @@ const BuyCoin: FunctionComponent = (): JSX.Element => {
           <div className={`${styles.mt64} ${styles.ml10} ${styles.ckWrap}`}>
             <input type="checkbox" id="ck" checked={isChecked} onChange={handleChecked} />
             <label htmlFor="ck"></label>
-            <span onClick={termsVisible}>인스타코인 구매약관</span>에 동의합니다
+            <span onClick={handleTermsVisible}>인스타코인 구매약관</span>에 동의합니다
           </div>
           <button className={`${styles.mt20} ${styles.btnBuy}`} onClick={handleBuy}>
             구매하기
@@ -69,7 +70,7 @@ const BuyCoin: FunctionComponent = (): JSX.Element => {
         </div>
       </section>
       {/* 구매 약관*/}
-      <Terms terms={terms} onclick={termsVisible} />
+      <Terms terms={terms} onclick={handleTermsVisible} />
     </>
   )
 }

@@ -18,11 +18,11 @@ const CoinList: FunctionComponent<props> = ({ name, abbr, price }): JSX.Element 
       <div className={styles.infoWrap}>
         <div className={styles.coinImg}>
           {abbr === 'INC' ? (
-            <img src="/images/simbol_inc.svg" alt={abbr} />
+            <img src={`${import.meta.env.BASE_URL}images/simbol_inc.svg`} alt={abbr} />
           ) : abbr === 'BTC' ? (
-            <img src="/images/simbol_btc.svg" alt={abbr} />
+            <img src={`${import.meta.env.BASE_URL}images/simbol_btc.svg`} alt={abbr} />
           ) : (
-            <img src="/images/simbol_eth.svg" alt={abbr} />
+            <img src={`${import.meta.env.BASE_URL}images/simbol_eth.svg`} alt={abbr} />
           )}
         </div>
         <div className={styles.coinInfo}>
