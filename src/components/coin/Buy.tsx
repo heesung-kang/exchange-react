@@ -10,7 +10,7 @@ import useQr from '@hooks/useQr'
 import { useRecoilState, useSetRecoilState } from 'recoil'
 import { buyStatusAtom, qrImgAtom } from '@recoil/coin'
 const Buy: FunctionComponent = (): JSX.Element => {
-  const inputFocus = useRef<any>(null)
+  const inputFocus = useRef<HTMLInputElement | any>(null)
   const navigate = useNavigate()
   const params = useParams()
   const [krw, setKrw] = useState<string | number>(0) //고정 텍스트 표기
