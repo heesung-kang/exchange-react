@@ -1,14 +1,20 @@
-import React from 'react'
-import { Route, Routes, useLocation } from 'react-router-dom'
+import React, { useEffect } from 'react'
+import { Route, Routes, useLocation, useNavigate } from 'react-router-dom'
 import NotFound from '@components/error/NotFound'
 import CoinQuote from '@pages/CoinQuote'
 import Top from '@components/common/Top'
 import BuyCoin from '@pages/BuyCoin'
 import BuyComplete from '@pages/BuyComplete'
 import Index from '@pages/Index'
-
+import { getCookie } from '@utils/cookie'
 function App() {
   const location = useLocation()
+  const navigate = useNavigate()
+  useEffect(() => {
+    if (getCookie('pay') === 'ok' && location.pathname === '/') {
+      navigate('/coinQuote')
+    }
+  }, [])
   return (
     <div>
       <Top />

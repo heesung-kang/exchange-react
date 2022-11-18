@@ -1,11 +1,18 @@
-import React, { FunctionComponent } from 'react'
+import React, { FunctionComponent, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import styles from '@styles/buyComplete.module.scss'
 import { useParams } from 'react-router-dom'
+import { useSetRecoilState } from 'recoil'
+import { coinPrice } from '@recoil/coin'
+import { setCookie } from '@utils/cookie'
 
 const BuyComplete: FunctionComponent = (): JSX.Element => {
   const params = useParams()
-  console.log(params.abbr, params.krw, params.exchange)
+  const setIsChecked = useSetRecoilState(coinPrice)
+  useEffect(() => {
+    setCookie('pay', 'ok')
+    setIsChecked(false)
+  }, [])
   return (
     <section className={styles.contents}>
       <div className={styles.subContainer}>
@@ -22,6 +29,9 @@ const BuyComplete: FunctionComponent = (): JSX.Element => {
         <div className={styles.info}>
           인스타페이 앱의 ‘내 지갑’ 메뉴에서
           <br /> 구매한 코인을 확인하세요!
+        </div>
+        <div className={styles.myWallet}>
+          <img src="/images/screen.svg" alt="" />
         </div>
         <Link to="/" className={styles.check}>
           확인

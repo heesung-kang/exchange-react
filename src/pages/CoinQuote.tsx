@@ -4,7 +4,7 @@ import CoinList from '@components/coin/CoinList'
 import useCoinPrice from '@hooks/useCoin'
 const CoinQuote: FunctionComponent = (): JSX.Element => {
   //코인시세 API
-  const { btc, eth } = useCoinPrice()
+  const { btc, eth } = useCoinPrice(true)
   return (
     <section className={styles.contents}>
       <div className={styles.subContainer}>

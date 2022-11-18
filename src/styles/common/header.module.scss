@@ -25,6 +25,13 @@
     h3 {
       display: none;
     }
+    .sns{
+      display: none;
+      margin-top:50px;
+      li{
+        margin-right:24px;
+      }
+    }
   }
   .hamburgMenu {
     display: none;
@@ -33,6 +40,7 @@
     display: none;
   }
 }
+
 
 @include mobile {
   .linked {
@@ -79,6 +87,9 @@
         display: block;
         @include NotoSans(1.6, 500, #000);
         margin-top: 7px;
+      }
+      .sns{
+        display:flex;
       }
       .close {
         display: block;
