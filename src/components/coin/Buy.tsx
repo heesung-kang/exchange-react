@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useEffect, useState } from 'react'
+import React, { FunctionComponent, useEffect, useState, useRef } from 'react'
 import styles from '@styles/buyCoin.module.scss'
 import useInput from '@hooks/useInput'
 import { comma, commaEssence } from '@utils/comma'
@@ -10,6 +10,7 @@ import useQr from '@hooks/useQr'
 import { useRecoilState, useSetRecoilState } from 'recoil'
 import { buyStatusAtom, qrImgAtom } from '@recoil/coin'
 const Buy: FunctionComponent = (): JSX.Element => {
+  const inputFocus = useRef<any>(null)
   const navigate = useNavigate()
   const params = useParams()
   const [krw, setKrw] = useState<string | number>(0) //고정 텍스트 표기
@@ -18,8 +19,10 @@ const Buy: FunctionComponent = (): JSX.Element => {
   const [calcVisible, setCalcVisible] = useState(false)
   const changeVisible = () => {
     setCalcVisible(!calcVisible)
+    setTimeout(() => {
+      inputFocus.current.focus()
+    }, 200)
   }
-
   const { paid, qr, _open } = useQr() //결제 qrcode 생성 hooks
   const { btc, eth } = useCoinPrice(false) //코인시세 hooks
   const [btcPrice, setBtcPrice] = useState(0) //btc 가격
@@ -80,9 +83,11 @@ const Buy: FunctionComponent = (): JSX.Element => {
           <div className={styles.krw}>
             <span className={styles.money}>
               {calcVisible ? (
-                <input type="number" className={styles.number} {...krwChange} onBlur={changeVisible} />
+                <input type="number" className={styles.number} {...krwChange} onBlur={changeVisible} ref={inputFocus} />
               ) : (
-                <span onClick={changeVisible}>{krw || 0}</span>
+                <span onClick={changeVisible} className={styles.clickArea}>
+                  {krw || 0}
+                </span>
               )}
             </span>
             <span className={styles.unit}>KRW</span>

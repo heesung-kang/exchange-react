@@ -45,12 +45,14 @@
       .money {
         padding-bottom: 5px;
         border-bottom: 1px solid #888888;
-        background: url("/images/arrow_down.svg") no-repeat right 10px top 15px;
         .number {
           text-align: right;
           @include NotoSans(2.4, 500, #000);
           width: calc(100% - 10px);
-          padding:0 5px;
+          border:0;
+        }
+        .clickArea{
+          width:100%;
         }
       }
     }
@@ -66,7 +68,6 @@
     .money {
       width: calc(100% - 65px);
       text-align: right;
-      padding-right: 40px;
       min-height: 36px;
     }
   }
