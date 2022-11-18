@@ -8,26 +8,25 @@ import useCoinPrice from '@hooks/useCoin'
 import { floor } from '@utils/floor'
 import useQr from '@hooks/useQr'
 import { useRecoilState, useSetRecoilState } from 'recoil'
-import { buyStatus, qrImg } from '@recoil/coin'
+import { buyStatusAtom, qrImgAtom } from '@recoil/coin'
 const Buy: FunctionComponent = (): JSX.Element => {
   const navigate = useNavigate()
-  //get params
   const params = useParams()
-  const [krw, setKrw] = useState<string | number>(0)
-  const [exchange, setExchange] = useState<string | number>(0)
+  const [krw, setKrw] = useState<string | number>(0) //고정 텍스트 표기
+  const [exchange, setExchange] = useState<string | number>(0) //환전 코인 갯수
+  // input visible
   const [calcVisible, setCalcVisible] = useState(false)
   const changeVisible = () => {
     setCalcVisible(!calcVisible)
   }
-  //결제 hooks
-  const { paid, qr, _open } = useQr()
-  //코인시세 API
-  const { btc, eth } = useCoinPrice(false)
-  const [btcPrice, setBtcPrice] = useState(0)
-  const [ethPrice, setEthPrice] = useState(0)
+
+  const { paid, qr, _open } = useQr() //결제 qrcode 생성 hooks
+  const { btc, eth } = useCoinPrice(false) //코인시세 hooks
+  const [btcPrice, setBtcPrice] = useState(0) //btc 가격
+  const [ethPrice, setEthPrice] = useState(0) //eth 가격
   const [exchangePrice, setExchangePrice] = useState(0) //최종 결제 코인 수
-  const [coinBuyStatus, setCoinBuyStatus] = useRecoilState(buyStatus) // 코인 구매 상태
-  //구매버튼 클릭시 시세 받기
+  const [coinBuyStatus, setCoinBuyStatus] = useRecoilState(buyStatusAtom) // 코인 구매 상태
+  //구매버튼 클릭시 코인시세 hooks 에서 받은값 전달
   useEffect(() => {
     setBtcPrice(btc)
     setEthPrice(eth)
@@ -43,7 +42,7 @@ const Buy: FunctionComponent = (): JSX.Element => {
     }
   }, [coinBuyStatus])
   //qr 이미지 생성
-  const setImg = useSetRecoilState(qrImg)
+  const setImg = useSetRecoilState(qrImgAtom)
   useEffect(() => {
     setImg(qr)
   }, [qr])
@@ -71,7 +70,7 @@ const Buy: FunctionComponent = (): JSX.Element => {
     const localStringEx = commaEssence(exchangePrice) //천단위 콤마 : 정수
     setKrw(localString)
     setExchange(localStringEx)
-  }, [krwChange])
+  }, [krwChange, ethPrice, btcPrice])
 
   return (
     <>

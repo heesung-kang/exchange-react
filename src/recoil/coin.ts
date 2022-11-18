@@ -1,21 +1,21 @@
 import { atom } from 'recoil'
 
-export const coinPrice = atom<boolean>({
-  key: 'coinPrice',
+export const getCoinPriceStatusAtom = atom<boolean>({
+  key: 'getCoinPriceStatusAtom',
   default: false,
 })
 
-export const termsCheck = atom<boolean>({
-  key: 'termsCheck',
+export const termsCheckAtom = atom<boolean>({
+  key: 'termsCheckAtom',
   default: false,
 })
 
-export const buyStatus = atom<boolean>({
-  key: 'buyStatus',
+export const buyStatusAtom = atom<boolean>({
+  key: 'buyStatusAtom',
   default: false,
 })
 
-export const qrImg = atom<string>({
-  key: 'qrImg',
+export const qrImgAtom = atom<string>({
+  key: 'qrImgAtom',
   default: '',
 })

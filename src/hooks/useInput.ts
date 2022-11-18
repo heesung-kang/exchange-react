@@ -8,6 +8,7 @@ const useInput = ({ initialState, reset, validator }: { initialState: any; reset
       const {
         target: { value },
       } = e
+      //maxlength
       let willUpdate = true
       if (typeof validator === 'function') {
         willUpdate = validator(value)
@@ -21,6 +22,7 @@ const useInput = ({ initialState, reset, validator }: { initialState: any; reset
   useEffect(() => {
     setValue(state)
   }, [state])
+  //초기화
   useEffect(() => {
     setValue(state)
   }, [reset])

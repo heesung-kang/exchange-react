@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import { useQuery } from 'react-query'
 import { BtcType, EthType } from '@@types/coin'
 import { getCoinPrice } from '@api/coinPrice'
-import { coinPrice } from '@recoil/coin'
+import { getCoinPriceStatusAtom } from '@recoil/coin'
 import { useRecoilState } from 'recoil'
 import { useParams } from 'react-router-dom'
 import useDidMountEffect from '@hooks/useDidMountEffect'
@@ -11,7 +11,7 @@ const useCoinPrice = (get: boolean) => {
   const params = useParams()
   const [btc, setBtc] = useState(0)
   const [eth, setEth] = useState(0)
-  const [status, setStatus] = useRecoilState(coinPrice)
+  const [status, setStatus] = useRecoilState(getCoinPriceStatusAtom)
   const { refetch: btcRefetch, data: bitcoin } = useQuery<BtcType, Error>(
     ['getPrice', 'bitcoin', params.abbr],
     async coinName => await getCoinPrice(coinName),

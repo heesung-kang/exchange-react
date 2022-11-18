@@ -4,17 +4,18 @@ import styles from '@styles/common/header.module.scss'
 import { Link } from 'react-router-dom'
 import useQr from '@hooks/useQr'
 import { useSetRecoilState } from 'recoil'
-import { termsCheck } from '@recoil/coin'
+import { termsCheckAtom } from '@recoil/coin'
 const Top: FunctionComponent = (): JSX.Element => {
+  //메뉴 처리
   const [state, setState] = useState(false)
-  const setIsChecked = useSetRecoilState(termsCheck)
-  const showMenu = () => {
+  const handleShow = () => {
     setState(true)
   }
-  const hideMenu = () => {
+  const handleHide = () => {
     setState(false)
   }
   //결제 중단
+  const setIsChecked = useSetRecoilState(termsCheckAtom)
   const { _stop } = useQr()
   const handleStop = () => {
     setIsChecked(false)
@@ -28,13 +29,13 @@ const Top: FunctionComponent = (): JSX.Element => {
             <img src={`${import.meta.env.BASE_URL}images/logo.svg`} alt="instapay" />
           </Link>
         </div>
-        <div className={styles.hamburgMenu} onClick={showMenu}>
+        <div className={styles.hamburgMenu} onClick={handleShow}>
           <span></span>
           <span></span>
           <span></span>
         </div>
         <nav className={state ? `${styles.active} ${styles.linked}` : `${styles.linked}`}>
-          <div className={styles.close} onClick={hideMenu}>
+          <div className={styles.close} onClick={handleHide}>
             <img src={`${import.meta.env.BASE_URL}images/close.svg`} alt="" />
           </div>
           <div className={styles.books}>
@@ -73,7 +74,7 @@ const Top: FunctionComponent = (): JSX.Element => {
             </ul>
           </div>
         </nav>
-        <div className={state ? `${styles.active} ${styles.dim}` : `${styles.dim}`} onClick={hideMenu}></div>
+        <div className={state ? `${styles.active} ${styles.dim}` : `${styles.dim}`} onClick={handleHide}></div>
       </div>
     </section>
   )
