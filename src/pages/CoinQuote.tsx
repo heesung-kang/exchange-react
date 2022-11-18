@@ -19,10 +19,10 @@ const CoinQuote: FunctionComponent = (): JSX.Element => {
             <CoinList name="인스타코인" abbr="INC" price={2000} />
           </li>
           <li>
-            <CoinList name="이더리움" abbr="ETH" price={btc} />
+            <CoinList name="이더리움" abbr="ETH" price={eth} />
           </li>
           <li>
-            <CoinList name="비트코인" abbr="BTC" price={eth} />
+            <CoinList name="비트코인" abbr="BTC" price={btc} />
           </li>
         </ul>
       </div>

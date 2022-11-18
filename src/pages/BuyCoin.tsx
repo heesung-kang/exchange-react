@@ -3,11 +3,10 @@ import styles from '@styles/buyCoin.module.scss'
 import { Link } from 'react-router-dom'
 import Buy from '@components/coin/Buy'
 import Terms from '@components/common/Terms'
-import { coinPrice, exchangeParentsPrice, termsCheck, buyStatus, qrImg } from '@recoil/coin'
+import { coinPrice, termsCheck, buyStatus, qrImg } from '@recoil/coin'
 import { useRecoilState, useSetRecoilState, useRecoilValue } from 'recoil'
 import isMobile from '@utils/isMobile'
 const BuyCoin: FunctionComponent = (): JSX.Element => {
-  const priceKrw = useRecoilValue(exchangeParentsPrice)
   const qr = useRecoilValue(qrImg)
   const [terms, setTerms] = useState(false)
   const termsVisible = () => setTerms(!terms)
@@ -17,10 +16,6 @@ const BuyCoin: FunctionComponent = (): JSX.Element => {
   const buy = () => {
     if (!isChecked) {
       alert('약관에 동의해 주세요')
-      return
-    }
-    if (priceKrw === 0) {
-      alert('구매 금액을 입력해주세요')
       return
     }
     setFetch(true)
@@ -43,7 +38,7 @@ const BuyCoin: FunctionComponent = (): JSX.Element => {
               </Link>
             </span>
           </div>
-          {/* 코인 구매 금액 init */}
+          {/*/!* 코인 구매 금액 init *!/*/}
           <Buy />
           <div className={`${styles.mt64} ${styles.ml10} ${styles.ckWrap}`}>
             <input type="checkbox" id="ck" checked={isChecked} onChange={handleChecked} />
