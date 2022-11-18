@@ -5,7 +5,7 @@ import { comma, commaEssence } from '@utils/comma'
 import { isExponential } from '@utils/isExponential'
 import { useNavigate, useParams } from 'react-router-dom'
 import useCoinPrice from '@hooks/useCoin'
-import { floor } from '@utils/floor'
+import { decimal } from '@utils/floor'
 import useQr from '@hooks/useQr'
 import { useRecoilState, useSetRecoilState } from 'recoil'
 import { buyStatusAtom, qrImgAtom } from '@recoil/coin'
@@ -58,13 +58,13 @@ const Buy: FunctionComponent = (): JSX.Element => {
   useEffect(() => {
     const localString = comma(krwChange.value) //천단위 콤마
     if (params.abbr === 'ETH') {
-      const ext = Number(floor(krwChange.value / ethPrice)) // 환전
+      const ext = Number(decimal(krwChange.value / ethPrice)) // 환전
       isExponential(ext) ? setExchangePrice(0) : setExchangePrice(Number((ext * 0.999).toFixed(13)))
     } else if (params.abbr === 'BTC') {
-      const ext = Number(floor(krwChange.value / btcPrice)) // 환전
+      const ext = Number(decimal(krwChange.value / btcPrice)) // 환전
       isExponential(ext) ? setExchangePrice(0) : setExchangePrice(Number((ext * 0.999).toFixed(13)))
     } else if (params.abbr === 'INC') {
-      const ext = Number(floor(krwChange.value / 2000)) // 환전
+      const ext = Number(decimal(krwChange.value / 2000)) // 환전
       isExponential(ext) ? setExchangePrice(0) : setExchangePrice(Number((ext * 0.999).toFixed(13)))
     }
     const localStringEx = commaEssence(exchangePrice) //천단위 콤마 : 정수

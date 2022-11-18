@@ -58,17 +58,17 @@ const Top: FunctionComponent = (): JSX.Element => {
             <ul className={styles.sns}>
               <li>
                 <a href="https://www.instapay.kr/" target="_blank" rel="noreferrer">
-                  <img src="/images/home_green.svg" alt="homepage" />
+                  <img src={`${import.meta.env.BASE_URL}images/home_green.svg`} alt="homepage" />
                 </a>
               </li>
               <li>
                 <a href="https://blog.naver.com/instapay_official" target="_blank" rel="noreferrer">
-                  <img src="/images/blog_green.svg" alt="blog" />
+                  <img src={`${import.meta.env.BASE_URL}images/blog_green.svg`} alt="blog" />
                 </a>
               </li>
               <li>
                 <a href="https://www.instagram.com/instabooks.official/" target="_blank" rel="noreferrer">
-                  <img src="/images/instagram_green.svg" alt="instagram" />
+                  <img src={`${import.meta.env.BASE_URL}images/instagram_green.svg`} alt="instagram" />
                 </a>
               </li>
             </ul>
