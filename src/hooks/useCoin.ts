@@ -6,7 +6,6 @@ import { getCoinPrice } from '@api/coinPrice'
 import { getCoinPriceStatusAtom } from '@recoil/coin'
 import { useRecoilState } from 'recoil'
 import { useParams } from 'react-router-dom'
-import useDidMountEffect from '@hooks/useDidMountEffect'
 const useCoinPrice = (get: boolean) => {
   const params = useParams()
   const [btc, setBtc] = useState(0)
@@ -29,11 +28,11 @@ const useCoinPrice = (get: boolean) => {
     },
   )
   //구매시 코인 1개의 정보만 호출
-  useDidMountEffect(() => {
+  useEffect(() => {
     if (!get) {
       params.abbr === 'ETH' ? ethRefetch() : btcRefetch()
     }
-  }, [])
+  }, [get])
   useEffect(() => {
     bitcoin ? setBtc(bitcoin.bitcoin.krw) : null
     ethereum ? setEth(ethereum.ethereum.krw) : null
