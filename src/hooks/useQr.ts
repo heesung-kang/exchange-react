@@ -16,19 +16,7 @@ const useQr = () => {
       return
     }
     if (typeof qr == 'undefined' || nPay.goods !== pay.productName || nPay.price !== pay.productAmount || nPay.ttl !== pay.ttl) {
-      //setPay({ goods: pay.productName, ttl: pay.ttl, price: pay.productAmount })
-      //임시 문자열
-      const generateRandomString = () => {
-        const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
-        let result = ''
-        const charactersLength = characters.length
-        for (let i = 0; i < 5; i++) {
-          result += characters.charAt(Math.floor(Math.random() * charactersLength))
-        }
-        return result
-      }
-      const randomStr = generateRandomString()
-      setPay({ goods: randomStr, ttl: pay.ttl, price: 1 })
+      setPay({ goods: pay.productName, ttl: pay.ttl, price: pay.productAmount })
     } else {
       _createWait()
     }
