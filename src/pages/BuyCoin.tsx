@@ -64,7 +64,9 @@ const BuyCoin: FunctionComponent = (): JSX.Element => {
           {qr !== '' && !isMobile() ? (
             <div className={styles.qrWrap}>
               <h2>인스타페이 앱으로 QR코드를 찍어서 결제해 주세요.</h2>
-              <img src={qrcode} />
+              <div className={styles.mt10}>
+                <img src={qrcode} />
+              </div>
             </div>
           ) : null}
         </div>

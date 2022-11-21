@@ -18,6 +18,9 @@
   margin-top: 30px;
   @include NotoSans(1.6, 500, #000);
 }
+.alert{
+  @include NotoSans(1.3, 500, #000);
+}
 .quote {
   position: relative;
   margin-top: 46px;
