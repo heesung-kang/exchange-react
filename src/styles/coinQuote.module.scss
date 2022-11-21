@@ -3,7 +3,7 @@
 }
 .comment {
   @include NotoSans(1.4, 500, #888888);
-  margin-top: 5px;
+  margin-top: 20px;
 }
 .refresh{
   text-align: right;
@@ -13,7 +13,7 @@
   }
 }
 .header{
-  margin-top: 70px;
+  margin-top: 40px;
   @include NotoSans(1.5,500,#888888);
   display:flex;
   justify-content: space-between;

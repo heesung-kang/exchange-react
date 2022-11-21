@@ -99,7 +99,7 @@ const Buy: FunctionComponent = (): JSX.Element => {
             </span>
             <span className={styles.unit}>{params.abbr}</span>
           </div>
-          <div className={`${styles.alert} ${styles.mt50}`}>화면에 표시된 가상화폐 시세는 실제 구매 시점과 차이가 있을 수 있습니다.</div>
+          <div className={`${styles.alert} ${styles.mt50}`}>화면에 표시된 자산 시세는 실제 구매 시점과 차이가 있을 수 있습니다.</div>
         </div>
       </div>
     </>
