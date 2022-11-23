@@ -3,8 +3,8 @@ import styles from '@styles/common/footer.module.scss'
 
 const Footer: FunctionComponent = (): JSX.Element => {
   return (
-    <>
-      <div>Copyright © 2022 InstaPay - All Rights Reserved</div>
+    <section className={styles.footer}>
+      <div className={styles.copy}>Copyright © 2022 InstaPay - All Rights Reserved</div>
       <ul className={styles.sns}>
         <li>
           <a href="https://www.instapay.kr/" target="_blank" rel="noreferrer">
@@ -22,7 +22,7 @@ const Footer: FunctionComponent = (): JSX.Element => {
           </a>
         </li>
       </ul>
-    </>
+    </section>
   )
 }
 
