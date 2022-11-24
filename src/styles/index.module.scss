@@ -44,6 +44,7 @@
   .i2{
     max-width:1110px;
     margin:0 auto;
+    background:#fff;
     h2{
       @include NotoSans(3.2, 700, #373F41);
       text-align: center;

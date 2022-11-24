@@ -40,7 +40,7 @@ const BuyCoin: FunctionComponent = (): JSX.Element => {
     _stop()
   }
   return (
-    <>
+    <section className={styles.bg}>
       <section className={styles.contents}>
         <div className={styles.subContainer}>
           <div className={styles.back}>
@@ -73,7 +73,7 @@ const BuyCoin: FunctionComponent = (): JSX.Element => {
       </section>
       {/* 구매 약관*/}
       <Terms terms={terms} onclick={handleTermsVisible} />
-    </>
+    </section>
   )
 }
 
