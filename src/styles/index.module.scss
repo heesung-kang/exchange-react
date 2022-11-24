@@ -8,7 +8,10 @@
     display:flex;
     justify-content: space-between;
     .movie{
-      width:635px
+      width:635px;
+      img{
+        width:90%;
+      }
     }
     .infos{
       width:445px;

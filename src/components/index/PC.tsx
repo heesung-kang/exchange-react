@@ -9,7 +9,8 @@ const PC: FunctionComponent = (): JSX.Element => {
     <>
       <section className={`${styles.i1} ${styles.pt80}`}>
         <article className={styles.movie}>
-          <ReactPlayer url="https://www.youtube.com/watch?v=ysz5S6PUM-U" width="635px" height="420px" />
+          {/*<ReactPlayer url="https://www.youtube.com/watch?v=ysz5S6PUM-U" width="635px" height="420px" />*/}
+          <img src={`${import.meta.env.BASE_URL}images/page.png`} alt="" />
         </article>
         <article className={`${styles.infos} ${styles.mt20}`}>
           <h1>
