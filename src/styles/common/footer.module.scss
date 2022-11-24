@@ -1,0 +1,39 @@
+.footer{
+  max-width:1110px;
+  margin:30px auto;
+  padding-bottom:30px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  .sns{
+    display:flex;
+    li{
+      margin:0 0 0 30px;
+      img{
+        width:20px;
+      }
+    }
+  }
+}
+@include mobile{
+  .footer{
+    padding:30px 20px;
+    display:block;
+    margin:0;
+    .copy{
+      text-align:center;
+      @include NotoSans(1.4, 400, #000);
+    }
+    .sns{
+      margin-top:30px;
+      justify-content:center;
+      li{
+        margin:0 15px;
+        img{
+          width:20px;
+        }
+      }
+    }
+  }
+
+}

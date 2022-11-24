@@ -1,25 +1,101 @@
-import React, { FunctionComponent } from 'react'
+import React, { FunctionComponent, useRef } from 'react'
 import styles from '@styles/index.module.scss'
 import { Link } from 'react-router-dom'
-
+import ReactPlayer from 'react-player'
 const PC: FunctionComponent = (): JSX.Element => {
+  const howToRef = useRef<any>(null)
+  const scrollToElement = () => howToRef.current.scrollIntoView({ behavior: 'smooth' })
   return (
-    <article className={styles.i1}>
-      <h1>가장 쉽게 코인을 구매하세요!</h1>
-      <div className={styles.info}>
-        동해물과 백두산이 마르고 닳도록 하느님이 보우하사 동해물과 백두산이 마르고 닳도록 하느님이 보우하사 동해물과 백두산이 마르고 닳도록 하느님이
-        보우하사 동해물과 백두산이 마르고 닳도록 하느님이 보우하사 동해물과 백두산이 마르고 닳도록 하느님이 보우하사 동해물과 백두산이 마르고 닳도록
-        하느님이 보우하사 동해물과 백두산이 마르고 닳도록 하느님이 보우하사 동해물과 백두산이 마르고 닳도록 하느
-      </div>
-      <div className={styles.btnGroup}>
-        <Link to="/coinQuote" className={`${styles.btnStart} ${styles.mr20}`}>
-          시작하기
-        </Link>
-        <Link to="/coinQuote" className={styles.btnHowto}>
-          구매방법
-        </Link>
-      </div>
-    </article>
+    <>
+      <section className={`${styles.i1} ${styles.pt80}`}>
+        <article className={styles.movie}>
+          <ReactPlayer url="https://www.youtube.com/watch?v=ysz5S6PUM-U" width="635px" height="420px" />
+        </article>
+        <article className={`${styles.infos} ${styles.mt20}`}>
+          <h1>
+            가장 쉽게 코인을
+            <br /> 구매하세요!
+          </h1>
+          <div className={styles.info}>
+            가상자산 거래를 위해 쓰지도 않는 계좌 개설, 인증, 송금, 주문, ...
+            <br />이 모든 불편함을 언제까지 감수하시겠습니까?
+            <br />
+            <br />
+            원하는 금액을 입력하고 결제하세요!
+            <br />그 다음은 인스타페이가 처리해 줍니다.
+          </div>
+          <div className={styles.btnGroup}>
+            <Link to="/coinQuote" className={`${styles.btnStart} ${styles.mr20}`}>
+              시작하기
+            </Link>
+            <span onClick={scrollToElement} className={styles.btnHowto}>
+              구매방법
+            </span>
+          </div>
+        </article>
+      </section>
+      <section className={`${styles.mt130} ${styles.i2}`}>
+        <h2 ref={howToRef}>코인을 사는 새로운 방법</h2>
+        <div className={`${styles.mt24} ${styles.info}`}>
+          QR코드 기반 모바일 결제 인스타페이 앱으로 복잡한 절차없이 가장 쉬운 구매 방법을 제공합니다.
+        </div>
+        <ul className={styles.mt46}>
+          <li>
+            <div className={`${styles.img} ${styles.mb24}`}>
+              <img src={`${import.meta.env.BASE_URL}images/phone_m.svg`} alt="" />
+            </div>
+            <h3>앱 설치와 계좌등록</h3>
+            <div className={`${styles.commentH3}`}>
+              인스타페이 앱을 다운로드하여 설치해 주세요.
+              <br />
+              최초 단 한번의 계좌등록만으로 코인을 구매할 준비가 완료
+              <br />
+              됩니다.
+            </div>
+          </li>
+          <li>
+            <div className={`${styles.img} ${styles.mb24}`}>
+              <img src={`${import.meta.env.BASE_URL}images/cart_m.svg`} alt="" />
+            </div>
+            <h3>코인 선택</h3>
+            <div className={`${styles.commentH3}`}>
+              구매하실 코인을 고르시고 금액을 입력해 주세요.
+              <br />
+              국내 거래소의 시세를 반영한 구매 수량을 확인할 수 <br />
+              있습니다.
+            </div>
+          </li>
+          <li>
+            <div className={`${styles.img} ${styles.mb24}`}>
+              <img src={`${import.meta.env.BASE_URL}images/qr_m.svg`} alt="" />
+            </div>
+            <h3>앱으로 간단히 구매완료</h3>
+            <div className={`${styles.commentH3}`}>
+              인스타페이 앱으로 QR코드를 스캔하면 간단히 결제 끝.
+              <br /> (모바일에서는 QR을 터치)
+              <br /> 구매 결과는 앱에서 확인합니다.
+            </div>
+          </li>
+        </ul>
+      </section>
+      <section className={`${styles.i3} ${styles.mt72} ${styles.pt40} ${styles.pb78}`}>
+        <h2>App Download</h2>
+        <div className={`${styles.btnGroup} ${styles.mt44}`}>
+          <a href="https://apps.apple.com/kr/app/%EC%9D%B8%EC%8A%A4%ED%83%80%ED%8E%98%EC%9D%B4/id1455816463" target="_blank" rel="noreferrer">
+            <i>
+              <img src={`${import.meta.env.BASE_URL}images/apple_m.svg`} alt="" />
+            </i>
+            APP STORE
+          </a>
+          <a href="https://play.google.com/store/apps/details?id=com.insta.instapay" target="_blank" rel="noreferrer">
+            <i>
+              <img src={`${import.meta.env.BASE_URL}images/android_m.svg`} alt="" />
+            </i>
+            PLAY STORE
+          </a>
+        </div>
+      </section>
+    </>
   )
 }
 
