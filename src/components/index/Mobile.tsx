@@ -1,7 +1,9 @@
-import React, { FunctionComponent } from 'react'
+import React, { FunctionComponent, useRef } from 'react'
 import styles from '@styles/index.module.scss'
 import { Link } from 'react-router-dom'
 const Mobile: FunctionComponent = (): JSX.Element => {
+  const howToRef = useRef<any>(null)
+  const scrollToElement = () => howToRef.current.scrollIntoView({ behavior: 'smooth' })
   return (
     <section className={styles.mobile}>
       <article className={styles.m1}>
@@ -16,11 +18,11 @@ const Mobile: FunctionComponent = (): JSX.Element => {
           <Link to="/coinQuote" className={`${styles.btnStart} ${styles.mr10}`}>
             시작하기
           </Link>
-          <a href="" className={`${styles.howToBuy} ${styles.ml10}`}>
+          <span className={`${styles.howToBuy} ${styles.ml10}`} onClick={scrollToElement}>
             구매방법
-          </a>
+          </span>
         </div>
-        <ul className={styles.mt80}>
+        <ul className={styles.mt80} ref={howToRef}>
           <li>
             <h2>코인을 사는 새로운 방법</h2>
             <div className={`${styles.commentH2} ${styles.mt20} ${styles.pb16}`}>
