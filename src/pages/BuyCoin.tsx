@@ -56,7 +56,7 @@ const BuyCoin: FunctionComponent = (): JSX.Element => {
           <div className={`${styles.mt64} ${styles.ml10} ${styles.ckWrap}`}>
             <input type="checkbox" id="ck" checked={isChecked} onChange={handleChecked} />
             <label htmlFor="ck"></label>
-            <span onClick={handleTermsVisible}>인스타코인 구매약관</span>에 동의합니다
+            <span onClick={handleTermsVisible}>가상자산 구매약관</span>에 동의합니다
           </div>
           <button className={`${styles.mt20} ${styles.btnBuy}`} onClick={handleBuy}>
             구매하기

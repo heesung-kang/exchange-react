@@ -15,7 +15,7 @@ const Terms: FunctionComponent<props> = ({ terms, onclick }): JSX.Element => {
       </section>
       <section className={styles.termsBody}>
         <div className={styles.termsBodyWrap}>
-          <h3>인스타코인 구매 약관</h3>
+          <h3>가상자산 구매 약관</h3>
           <div className={styles.term}>내용...</div>
         </div>
       </section>
