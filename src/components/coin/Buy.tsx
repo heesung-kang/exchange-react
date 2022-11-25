@@ -10,6 +10,7 @@ import useQr from '@hooks/useQr'
 import { useRecoilState, useSetRecoilState } from 'recoil'
 import { buyStatusAtom, qrImgAtom } from '@recoil/coin'
 const Buy: FunctionComponent = (): JSX.Element => {
+  const [reset, setReset] = useState(false) //필드 초기화
   const inputFocus = useRef<HTMLInputElement | any>(null)
   const navigate = useNavigate()
   const params = useParams()
@@ -20,7 +21,7 @@ const Buy: FunctionComponent = (): JSX.Element => {
   const changeVisible = () => {
     setCalcVisible(!calcVisible)
     setTimeout(() => {
-      inputFocus.current.focus()
+      if (inputFocus.current !== null) inputFocus.current.focus()
     }, 200)
   }
   const { paid, qr, _open } = useQr() //결제 qrcode 생성 hooks
@@ -37,10 +38,14 @@ const Buy: FunctionComponent = (): JSX.Element => {
   //구매버튼 클릭시 API 전송
   useEffect(() => {
     if (coinBuyStatus && exchangePrice !== 0) {
+      if (krwChange.value < 100000) {
+        alert('최소구매 금액은 10만원 입니다.')
+        return
+      }
       _open({ productName: params.abbr, productAmount: krwChange.value, ttl: 20 })
       setCoinBuyStatus(false)
     } else if (coinBuyStatus && exchangePrice === 0) {
-      alert('구매 금액을 입력하지 않았거나 구매금액이 너무 적습니다.')
+      alert('구매 금액을 입력하지 않았거나 구매금액이 너무 적습니다. \n최소구매 금액은 10만원 입니다.')
       setCoinBuyStatus(false)
     }
   }, [coinBuyStatus])
@@ -56,25 +61,34 @@ const Buy: FunctionComponent = (): JSX.Element => {
     }
   }, [paid])
   /*인풋 설정*/
-  const maxLen = (value: string) => value.length <= 10
-  const krwChange = useInput({ initialState: '', reset: false, validator: maxLen })
+  const maxLen = (value: string) => value.length <= 7
+  const krwChange = useInput({ initialState: '', reset, validator: maxLen })
   useEffect(() => {
     const localString = comma(krwChange.value) //천단위 콤마
     if (params.abbr === 'ETH') {
       const ext = Number(decimal(krwChange.value / ethPrice)) // 환전
-      isExponential(ext) ? setExchangePrice(0) : setExchangePrice(Number((ext * 0.999).toFixed(13)))
+      isExponential(ext) ? setExchangePrice(0) : setExchangePrice(Number((ext * 0.995).toFixed(13)))
     } else if (params.abbr === 'BTC') {
       const ext = Number(decimal(krwChange.value / btcPrice)) // 환전
-      isExponential(ext) ? setExchangePrice(0) : setExchangePrice(Number((ext * 0.999).toFixed(13)))
+      isExponential(ext) ? setExchangePrice(0) : setExchangePrice(Number((ext * 0.995).toFixed(13)))
     } else if (params.abbr === 'INC') {
       const ext = Number(decimal(krwChange.value / 2000)) // 환전
-      isExponential(ext) ? setExchangePrice(0) : setExchangePrice(Number((ext * 0.999).toFixed(13)))
+      isExponential(ext) ? setExchangePrice(0) : setExchangePrice(Number((ext * 0.995).toFixed(13)))
     }
     const localStringEx = commaEssence(exchangePrice) //천단위 콤마 : 정수
     setKrw(localString)
     setExchange(localStringEx)
   }, [krwChange, ethPrice, btcPrice])
-
+  //최대금액 확인
+  useEffect(() => {
+    if (krwChange.value > 2000000) {
+      alert('최대구매 금액은 200만원 입니다.')
+      setReset(true)
+      setTimeout(() => {
+        setReset(false)
+      }, 500)
+    }
+  }, [krwChange.value])
   return (
     <>
       <h1 className={styles.title}>{params.name}</h1>
@@ -95,7 +109,7 @@ const Buy: FunctionComponent = (): JSX.Element => {
           <div className={styles.coin}>
             <span className={styles.money}>
               <span>{exchange}</span>
-              <div className={styles.commission}>수수료 0.1%</div>
+              <div className={styles.commission}>수수료 0.5%</div>
             </span>
             <span className={styles.unit}>{params.abbr}</span>
           </div>
