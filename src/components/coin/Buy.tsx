@@ -42,7 +42,7 @@ const Buy: FunctionComponent = (): JSX.Element => {
         alert('최소 100,000원 이상 구매가 가능합니다')
         return
       }
-      _open({ productName: params.abbr, productAmount: krwChange.value, ttl: 20 })
+      _open({ productName: `${params.abbr} ${exchangePrice}`, productAmount: krwChange.value, ttl: 20 })
       setCoinBuyStatus(false)
     } else if (coinBuyStatus && exchangePrice === 0) {
       alert('구매 금액을 입력하지 않았거나 구매금액이 너무 적습니다. \n최소 100,000원 이상 구매가 가능합니다')
