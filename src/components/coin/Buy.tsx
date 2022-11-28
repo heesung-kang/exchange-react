@@ -66,14 +66,17 @@ const Buy: FunctionComponent = (): JSX.Element => {
   useEffect(() => {
     const localString = comma(krwChange.value) //천단위 콤마
     if (params.abbr === 'ETH') {
-      const ext = Number(decimal(krwChange.value / ethPrice)) // 환전
-      isExponential(ext) ? setExchangePrice(0) : setExchangePrice(Number((ext * 0.995).toFixed(13)))
+      const ext = Number(krwChange.value / ethPrice) // 환전
+      const fixed = decimal(ext * 0.995)
+      isExponential(ext) ? setExchangePrice(0) : setExchangePrice(Number(fixed))
     } else if (params.abbr === 'BTC') {
-      const ext = Number(decimal(krwChange.value / btcPrice)) // 환전
-      isExponential(ext) ? setExchangePrice(0) : setExchangePrice(Number((ext * 0.995).toFixed(13)))
+      const ext = Number(krwChange.value / btcPrice) // 환전
+      const fixed = decimal(ext * 0.995)
+      isExponential(ext) ? setExchangePrice(0) : setExchangePrice(Number(fixed))
     } else if (params.abbr === 'INC') {
-      const ext = Number(decimal(krwChange.value / 2000)) // 환전
-      isExponential(ext) ? setExchangePrice(0) : setExchangePrice(Number((ext * 0.995).toFixed(13)))
+      const ext = Number(krwChange.value / 2000) // 환전
+      const fixed = decimal(ext * 0.995)
+      isExponential(ext) ? setExchangePrice(0) : setExchangePrice(Number(fixed))
     }
     const localStringEx = commaEssence(exchangePrice) //천단위 콤마 : 정수
     setKrw(localString)
