@@ -1,3 +1,3 @@
 export function decimal(number: number) {
-  return number.toFixed(4)
+  return Math.floor(number * 10000) / 10000
 }
