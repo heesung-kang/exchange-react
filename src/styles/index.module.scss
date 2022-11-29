@@ -108,10 +108,15 @@
     background: #fff;
     .m1 {
       padding: 0 20px;
+      .mobileImg{
+        img{
+          width:100%;
+        }
+      }
       h1 {
         @include NotoSans(2.4, 700, #373F41);
         text-align: center;
-        padding-top: 100px;
+        padding-top: 63px;
       }
       .comment {
         text-align: center;

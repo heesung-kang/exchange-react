@@ -7,6 +7,9 @@ const Mobile: FunctionComponent = (): JSX.Element => {
   return (
     <section className={styles.mobile}>
       <article className={styles.m1}>
+        <div className={`${styles.mobileImg} ${styles.mt55}`}>
+          <img src={`${import.meta.env.BASE_URL}images/page.svg`} alt="" />
+        </div>
         <h1>가장 쉽게 코인을 구매하세요!</h1>
         <div className={`${styles.comment} ${styles.mt40}`}>
           가상자산 거래를 위해 불필요한한 계좌 개설, 인증, 송금, 주문, ... 이 모든 불편함을 언제까지 감수하시겠습니까?
