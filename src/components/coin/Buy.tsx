@@ -10,14 +10,14 @@ import useQr from '@hooks/useQr'
 import { useRecoilState, useSetRecoilState } from 'recoil'
 import { buyStatusAtom, qrImgAtom } from '@recoil/coin'
 const Buy: FunctionComponent = (): JSX.Element => {
-  const [reset, setReset] = useState(false) //필드 초기화
-  const inputFocus = useRef<HTMLInputElement | any>(null)
   const navigate = useNavigate()
   const params = useParams()
+  const inputFocus = useRef<HTMLInputElement | any>(null)
+  const [reset, setReset] = useState(false) //필드 초기화
   const [krw, setKrw] = useState<string | number>(0) //고정 텍스트 표기
   const [exchange, setExchange] = useState<string | number>(0) //환전 코인 갯수
-  // input visible
-  const [calcVisible, setCalcVisible] = useState(false)
+  const [coin, setCoin] = useState<number>(0) //환전할 코인
+  const [calcVisible, setCalcVisible] = useState(false) // input visible
   const changeVisible = () => {
     setCalcVisible(!calcVisible)
     setTimeout(() => {
@@ -65,19 +65,10 @@ const Buy: FunctionComponent = (): JSX.Element => {
   const krwChange = useInput({ initialState: '', reset, validator: maxLen })
   useEffect(() => {
     const localString = comma(krwChange.value) //천단위 콤마
-    if (params.abbr === 'ETH') {
-      const ext = Number(krwChange.value / ethPrice) // 환전
-      const fixed = decimal(ext * 0.995)
-      isExponential(ext) ? setExchangePrice(0) : setExchangePrice(Number(fixed))
-    } else if (params.abbr === 'BTC') {
-      const ext = Number(krwChange.value / btcPrice) // 환전
-      const fixed = decimal(ext * 0.995)
-      isExponential(ext) ? setExchangePrice(0) : setExchangePrice(Number(fixed))
-    } else if (params.abbr === 'INC') {
-      const ext = Number(krwChange.value / 2000) // 환전
-      const fixed = decimal(ext * 0.995)
-      isExponential(ext) ? setExchangePrice(0) : setExchangePrice(Number(fixed))
-    }
+    params.abbr === 'ETH' ? setCoin(ethPrice) : params.abbr === 'BTC' ? setCoin(btcPrice) : setCoin(2000)
+    const ext = Number(krwChange.value / coin) // 환전
+    const fixed = decimal(ext * 0.995) // 수수료 & 자리수
+    isExponential(ext) ? setExchangePrice(0) : setExchangePrice(Number(fixed))
     const localStringEx = commaEssence(exchangePrice) //천단위 콤마 : 정수
     setKrw(localString)
     setExchange(localStringEx)
