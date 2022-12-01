@@ -52,8 +52,6 @@ const Top: FunctionComponent = (): JSX.Element => {
               당신의 취향을 사로잡는 압도적인 풍미!
               <br />
               커피의 혁신 고릴라 빈즈
-              <br />
-              안녕하세요
             </h3>
             <ul className={styles.sns}>
               <li>
