@@ -130,6 +130,7 @@ input[type="number"] {
   left:0;
   z-index:1;
   transition:top 0.3s ease-in-out;
+  overflow: hidden;
   &.active{
     top:0;
   }
@@ -155,17 +156,26 @@ input[type="number"] {
     height: calc(100vh - 60px);
     background-color: #fff;
     padding: 25px 20px;
+    overflow:auto;
     .termsBodyWrap {
       width: 100%;
       max-width: 440px;
       margin: 0 auto;
-      h3 {
-        @include NotoSans(2, 500, #000);
+      h1 { font-size:1.6rem; font-weight:600;margin-bottom:1.6rem;}
+      h2 { font-size:1.6rem; font-weight:600;margin:1.6rem 0;}
+      .sent{
+        margin-bottom:1.5rem;
+        padding-left:2rem;
+        li{
+          margin-bottom:1rem;
+          list-style:decimal;
+        }
       }
-      .term {
-        margin-top: 16px;
-        @include NotoSans(1.4, 500, #000);
+      .sent2{
+        margin-bottom:1.5rem;
+        padding-left:2rem;
       }
+      .subsent {margin-top:0.5rem; margin-bottom:0.5rem;padding-left:1.5rem; }
     }
   }
 }
