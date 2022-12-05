@@ -16,7 +16,7 @@ const Terms: FunctionComponent<props> = ({ terms, onclick }): JSX.Element => {
         </section>
         <section className={styles.termsBody}>
           <div className={styles.termsBodyWrap}>
-            <h1>인스타페이 가상자산 구매 이용약관</h1>
+            <h1>가상자산 구매서비스 이용약관</h1>
             <h2>제1조(목적)</h2>
             <p>
               이 약관은 (주)인스타페이(이하 “회사”라 한다)가 웹사이트(ex.instacoins.io)를 통해 제공하는 온라인 가상자산 구매 서비스(이하 “서비스”라
