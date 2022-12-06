@@ -7,7 +7,7 @@ type props = {
 const Terms: FunctionComponent<props> = ({ terms, onclick }): JSX.Element => {
   return (
     <section className={terms ? `${styles.terms} ${styles.active}` : `${styles.terms}`}>
-      <div className={styles.wrap}>
+      <ol className={styles.wrap}>
         <section className={styles.termsHeader}>
           <h2>가상자산 구매 약관</h2>
           <div className={styles.close} onClick={onclick}>
@@ -15,7 +15,7 @@ const Terms: FunctionComponent<props> = ({ terms, onclick }): JSX.Element => {
           </div>
         </section>
         <section className={styles.termsBody}>
-          <div className={styles.termsBodyWrap}>
+          <ol className={styles.termsBodyWrap}>
             <h1>가상자산 구매서비스 이용약관</h1>
             <h2>제1조(목적)</h2>
             <p>
@@ -114,9 +114,9 @@ const Terms: FunctionComponent<props> = ({ terms, onclick }): JSX.Element => {
                 경우 회사는 다음 중 하나 이상의 조치를 수행할 수 있으며 이러한 조치로 인해서 회원에게 발생한 손실에 대해서 회사는 고의 또는 과실이
                 없는 한 책임을 지지 아니 한다.
               </li>
-              <ol className={styles.sent}>
-                <li>서비스에 대한 접근 중단</li>
-                <li>서비스 안에서의 모든 활동 중단</li>
+              <ol className={styles.sent2}>
+                <li style={{ listStyle: 'none' }}>가. 서비스 중단</li>
+                <li style={{ listStyle: 'none' }}>나. 구매 중단 및 반환</li>
               </ol>
               <li>
                 회원이 보유한 가상 자산에 대해서 회사에 출금을 요청하면, 회사는 해당 가상 자산을 회원의 개인 지갑에 전송한다. 이때 전송 수수료 는
@@ -246,9 +246,9 @@ const Terms: FunctionComponent<props> = ({ terms, onclick }): JSX.Element => {
               </li>
               <li>“회사”와 이용자 간에 제기된 전자상거래 소송에는 한국법을 적용한다.</li>
             </ol>
-          </div>
+          </ol>
         </section>
-      </div>
+      </ol>
     </section>
   )
 }
